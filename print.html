@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="transpiling.html"><strong aria-hidden="true">4.</strong> Transpiling</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration-intro.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="examples.html"><strong aria-hidden="true">3.1.</strong> Examples</a></li></ol></li><li class="chapter-item expanded "><a href="transpiling.html"><strong aria-hidden="true">4.</strong> Transpiling</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -202,7 +202,29 @@ cargo build --release
 ./target/release/statictranspl --help
 </code></pre>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
-<p>The main point of using <code>statictranspl</code> is for configuring ewwii.</p>
+<p>The main point of using <code>statictranspl</code> is for configuring ewwii. And this chapter goes into depth on how you can configure ewwii with <code>stpl</code>: statictranspl's configuration language.</p>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="examples"><a class="header" href="#examples">Examples</a></h1>
+<p>Here is an example of a stpl bar that says &quot;Hello World!&quot;:</p>
+<pre><code class="language-ruby">widget &quot;widget1&quot; {
+  box {
+    class: &quot;widget1&quot;
+    orientation: &quot;h&quot;
+    space_evenly: true
+    hexpand: true
+    spacing: 5
+  } {
+      label {
+        text: &quot;Hello World!&quot;
+      }
+  }
+}
+
+window &quot;main_window&quot; {
+  monitor: 0
+  windowtype: &quot;dock&quot;
+  geometry: { x: &quot;0&quot; y: &quot;0&quot; width: &quot;20px&quot; height: &quot;20px&quot; }
+} &quot;widget1&quot;
+</code></pre>
 <div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="transpiling"><a class="header" href="#transpiling">Transpiling</a></h1>
 <p>Once you have written your configuration in <code>stpl</code>, you can transpile it to <code>rhai</code> with the <strong>--transpile</strong> flag.</p>
 <p><strong>Usage example:</strong></p>
