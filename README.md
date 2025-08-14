@@ -12,10 +12,10 @@ You use the `statictranspl` binary to transpile `.stpl` files to `.rhai` files. 
 
 ```bash
 # long form
-statictranspl --transpile ./file1.stpl ./file2.stpl ./path/to/file3.stpl --out ./output_dir/
+statictranspl --transpile ./file1.stpl ./path/to/file2.stpl --out ./output_dir/
 
 # short form
-statictranspl -t ./file1.stpl ./file2.stpl ./path/to/file3.stpl -o ./output_dir/
+statictranspl -t ./file1.stpl ./path/to/file2.stpl -o ./output_dir/
 ```
 
 ## Example
