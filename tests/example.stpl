@@ -32,5 +32,5 @@ widget "widget1" {
 window "main_window" {
   monitor: 0
   windowtype: "dock"
-  geometry: { x: 0 y: 0 width: 10 height: 20 }
+  geometry: { x: "0" y: "0" width: "20px" height: "20px" }
 } "widget1"

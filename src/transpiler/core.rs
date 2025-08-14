@@ -127,26 +127,38 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
             let value_pair = inner.next().unwrap();
 
             fn render_value(p: Pair<Rule>) -> String {
+                let p = if p.as_rule() == Rule::value {
+                    p.into_inner().next().unwrap()
+                } else { p };
+
                 match p.as_rule() {
                     Rule::nested_map => {
-                        let entries = p
-                            .into_inner()
-                            .flat_map(|inner_pair| inner_pair.into_inner().map(render_value))
+                        let entries = p.into_inner()
+                            .flat_map(|map_entry_list| map_entry_list.into_inner())
+                            .map(|map_entry_pair| {
+                                let mut kv_inner = map_entry_pair.into_inner();
+                                let k = kv_inner.next().unwrap().as_str();
+                                let v = kv_inner.next().unwrap();
+                                format!("{}: {}", k, render_value(v))
+                            })
                             .collect::<Vec<_>>();
                         format!("#{{ {} }}", entries.join(", "))
                     }
+
                     Rule::list => {
                         let items = p.into_inner()
                             .map(render_value)
                             .collect::<Vec<_>>();
                         format!("[{}]", items.join(", "))
-                    }
+                    },
                     _ => p.as_str().to_string(),
                 }
             }
 
+
             format!("{}: {}", key, render_value(value_pair))
         }
+
 
         _ => String::new(),
     }

@@ -1,0 +1,25 @@
+# Examples
+
+Here is an example of a stpl bar that says "Hello World!":
+
+```ruby
+widget "widget1" {
+  box {
+    class: "widget1"
+    orientation: "h"
+    space_evenly: true
+    hexpand: true
+    spacing: 5
+  } {
+      label {
+        text: "Hello World!"
+      }
+  }
+}
+
+window "main_window" {
+  monitor: 0
+  windowtype: "dock"
+  geometry: { x: "0" y: "0" width: "20px" height: "20px" }
+} "widget1"
+```
