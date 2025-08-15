@@ -12,7 +12,11 @@ pub struct AppArgs {
     #[clap(short, long)]
     pub out: Option<String>,
 
-    /// Show debug logs
+    /// Format transpiled files for redability.
+    #[clap(short, long)]
+    pub format: bool,
+
+    /// Show debug logs.
     #[arg(long)]
     pub debug: bool,
 }

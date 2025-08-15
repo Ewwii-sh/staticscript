@@ -1,9 +1,12 @@
 mod grammar;
 mod opts;
 mod transpiler;
+mod formatter;
 
 use transpiler::transpile_code;
+use formatter::format_code;
 use opts::AppArgs;
+
 use log::Level;
 use clap::Parser as ClapParser;
 use std::fs;
@@ -19,12 +22,21 @@ fn main() {
             let dsl_code = fs::read_to_string(file_path)
                 .expect("Encoutered an unknown error while reading files");
                 
-            let transpiled_code = transpile_code(&dsl_code)
+            let mut transpiled_code = transpile_code(&dsl_code)
                 .unwrap_or_else(|e| {
                     log::error!("Error transpiling code:\n{}", e);
                     std::process::exit(1);
                 });
 
+            // argument to format code
+            if args.format {
+                let formatted_code = format_code(transpiled_code)
+                    .unwrap_or_else(|e| {
+                        log::error!("Error formatting code:\n{}", e);
+                        std::process::exit(1);
+                    });
+                transpiled_code = formatted_code;
+            }
 
             let file_name = Path::new(file_path)
                 .file_stem()
