@@ -5,9 +5,9 @@ pub fn format_code(code: String) -> Result<String, Box<dyn std::error::Error>> {
 
     #[derive(Debug, PartialEq)]
     enum Context {
-        Curly,   // { or #{
-        Square,  // [
-        Paren,   // (
+        Curly,  // { or #{
+        Square, // [
+        Paren,  // (
     }
 
     let mut formatted = String::new();
@@ -20,7 +20,7 @@ pub fn format_code(code: String) -> Result<String, Box<dyn std::error::Error>> {
         // Special-case #{
         if c == '#' {
             if let Some(&'{') = chars.peek() {
-                formatted.push_str("#{" );
+                formatted.push_str("#{");
                 chars.next();
 
                 indent_level += 1;

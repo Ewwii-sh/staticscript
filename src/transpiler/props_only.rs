@@ -1,6 +1,6 @@
-use pest::iterators::Pair;
-use crate::grammar::Rule;
 use super::core::transpile_pair;
+use crate::grammar::Rule;
+use pest::iterators::Pair;
 
 pub fn transpile_props_only(pair: Pair<Rule>, widget_type: &str) -> String {
     let mut map_entries = vec![];

@@ -79,10 +79,7 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
             let box_def = inner.next().unwrap();
             let box_content = transpile_pair(box_def);
 
-            format!(
-                "fn {}() {{\n    return {};\n}}",
-                name, box_content
-            )
+            format!("fn {}() {{\n    return {};\n}}", name, box_content)
         }
 
         // Containers
@@ -112,13 +109,11 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
         Rule::graph_def => transpile_props_only(pair, "graph"),
         Rule::transform_def => transpile_props_only(pair, "transform"),
 
-        Rule::all_widgets => {
-            pair.into_inner()
-                .map(transpile_pair)
-                .collect::<Vec<_>>()
-                .join("\n")
-        }
-
+        Rule::all_widgets => pair
+            .into_inner()
+            .map(transpile_pair)
+            .collect::<Vec<_>>()
+            .join("\n"),
 
         // Map entry
         Rule::map_entry => {
@@ -129,11 +124,14 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
             fn render_value(p: Pair<Rule>) -> String {
                 let p = if p.as_rule() == Rule::value {
                     p.into_inner().next().unwrap()
-                } else { p };
+                } else {
+                    p
+                };
 
                 match p.as_rule() {
                     Rule::nested_map => {
-                        let entries = p.into_inner()
+                        let entries = p
+                            .into_inner()
                             .flat_map(|map_entry_list| map_entry_list.into_inner())
                             .map(|map_entry_pair| {
                                 let mut kv_inner = map_entry_pair.into_inner();
@@ -146,19 +144,15 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
                     }
 
                     Rule::list => {
-                        let items = p.into_inner()
-                            .map(render_value)
-                            .collect::<Vec<_>>();
+                        let items = p.into_inner().map(render_value).collect::<Vec<_>>();
                         format!("[{}]", items.join(", "))
-                    },
+                    }
                     _ => p.as_str().to_string(),
                 }
             }
 
-
             format!("{}: {}", key, render_value(value_pair))
         }
-
 
         _ => String::new(),
     }
