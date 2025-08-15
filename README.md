@@ -18,6 +18,18 @@ statictranspl --transpile ./file1.stpl ./path/to/file2.stpl --out ./output_dir/
 statictranspl -t ./file1.stpl ./path/to/file2.stpl -o ./output_dir/
 ```
 
+The transpiled code does not have whitespaces which may make it unredable. Statictranspl provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted by using the **--format** (or **-f**) flag.
+
+**Example:**
+
+```bash
+# long form
+statictranspl --transpile ./file.stpl--out ./output_dir/ --format
+
+# short form
+statictranspl -t ./file.stpl -o ./output_dir/ -f
+```
+
 ## Example
 
 Here is a simple example of using stpl:

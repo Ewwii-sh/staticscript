@@ -26,5 +26,21 @@ The transpile command outputs the transpiled `.rhai` files in the current direct
 **Example:**
 
 ```bash
+# long form
+statictranspl -t ./path/to/file.stpl --out ./output_dir/
+
+# short form
 statictranspl -t ./path/to/file.stpl -o ./output_dir/
+```
+
+The transpiled code is unformatted by default and does not have whitespaces. Statictranspl provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted before writing by using the **--format** (or **-f**) flag.
+
+**Example:**
+
+```bash
+# long form
+statictranspl -t ./path/to/file.stpl -o ./output_dir/ --format
+
+# short form
+statictranspl -t ./path/to/file.stpl -o ./output_dir/ -f
 ```

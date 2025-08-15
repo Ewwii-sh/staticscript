@@ -1,4 +1,5 @@
-fn widget1() {	
+fn widget1() {
+	
     return box(#{
 		 class: "widget1",
 		 orientation: "h",
@@ -6,7 +7,8 @@ fn widget1() {
 		 hexpand: true,
 		 spacing: 5 
 	},
-	 [		label(#{
+	 [
+		label(#{
 			 text: "Hello World!" 
 		})
 	]);
@@ -14,7 +16,8 @@ fn widget1() {
 
 }
 
-enter([	
+enter([
+	
 defwindow("main_window",
 	 #{
 		 monitor: 0,

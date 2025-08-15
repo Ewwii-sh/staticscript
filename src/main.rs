@@ -30,6 +30,9 @@ fn main() {
 
             // argument to format code
             if args.format {
+                // warn as our formatter is trash
+                log::warn!("Formatter is an experimental feature. Results may contain redundant or inconsistent whitespaces.\n");
+
                 let formatted_code = format_code(transpiled_code)
                     .unwrap_or_else(|e| {
                         log::error!("Error formatting code:\n{}", e);
