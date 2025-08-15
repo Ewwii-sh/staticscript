@@ -6,12 +6,14 @@ use pest::iterators::Pair;
 use super::containers::transpile_container;
 use super::props_only::transpile_props_only;
 
+use std::collections::HashSet;
+
 pub fn transpile_code(dsl_code: &str) -> Result<String, Error<Rule>> {
     let pairs = DslParser::parse(Rule::program, dsl_code)?;
     let mut result = String::new();
 
     for pair in pairs {
-        let transpiled = transpile_pair(pair);
+        let transpiled = transpile_pair(pair)?;
         if !transpiled.trim().is_empty() {
             result.push_str(&transpiled);
             result.push('\n');
@@ -20,18 +22,46 @@ pub fn transpile_code(dsl_code: &str) -> Result<String, Error<Rule>> {
     Ok(result)
 }
 
-pub fn transpile_pair(pair: Pair<Rule>) -> String {
+pub fn transpile_pair(pair: Pair<Rule>) -> Result<String, Error<Rule>> {
     match pair.as_rule() {
         Rule::program => {
             let mut windows = vec![];
             let mut widgets = vec![];
+            let mut window_names = HashSet::new();
+            let mut widget_names = HashSet::new();
 
             for inner in pair.into_inner() {
                 if inner.as_rule() == Rule::statement {
                     for stmt_inner in inner.into_inner() {
                         match stmt_inner.as_rule() {
-                            Rule::widget_def => widgets.push(transpile_pair(stmt_inner)),
-                            Rule::window_def => windows.push(transpile_pair(stmt_inner)),
+                            Rule::widget_def => {
+                                let widget_name = stmt_inner.clone().into_inner().next().unwrap().as_str().trim_matches('"');
+                                if !widget_names.insert(widget_name.to_string()) {
+                                    // Create a Pest error from the span
+                                    let span = stmt_inner.as_span();
+                                    return Err(Error::new_from_span(
+                                        pest::error::ErrorVariant::CustomError {
+                                            message: format!("Duplicate widget name: {}", widget_name)
+                                        },
+                                        span
+                                    ));
+                                }
+                                widgets.push(transpile_pair(stmt_inner)?);
+                            }
+                            Rule::window_def => {
+                                let window_name = stmt_inner.clone().into_inner().next().unwrap().as_str().trim_matches('"');
+                                if !window_names.insert(window_name.to_string()) {
+                                    // Create a Pest error from the span
+                                    let span = stmt_inner.as_span();
+                                    return Err(Error::new_from_span(
+                                        pest::error::ErrorVariant::CustomError {
+                                            message: format!("Duplicate window name: {}", window_name)
+                                        },
+                                        span
+                                    ));
+                                }
+                                windows.push(transpile_pair(stmt_inner)?);
+                            }
                             _ => {}
                         }
                     }
@@ -51,7 +81,7 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
                 }
                 result.push_str("]);\n");
             }
-            result
+            Ok(result)
         }
 
         Rule::window_def => {
@@ -60,26 +90,27 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
             let map_entries = inner.next().unwrap();
             let widget_fn_call = inner.next().unwrap().as_str().trim_matches('"');
 
-            let entries = map_entries
+            let entries: Vec<String> = map_entries
                 .into_inner()
-                .map(transpile_pair)
-                .collect::<Vec<_>>();
+                .map(|p| transpile_pair(p))
+                .collect::<Result<_, _>>()?;
 
-            format!(
+
+            Ok(format!(
                 "defwindow({}, #{{ {} }}, {}())",
                 name,
                 entries.join(", "),
                 widget_fn_call
-            )
+            ))
         }
 
         Rule::widget_def => {
             let mut inner = pair.into_inner();
             let name = inner.next().unwrap().as_str().trim_matches('"');
             let box_def = inner.next().unwrap();
-            let box_content = transpile_pair(box_def);
+            let box_content = transpile_pair(box_def)?;
 
-            format!("fn {}() {{\n    return {};\n}}", name, box_content)
+            Ok(format!("fn {}() {{\n    return {};\n}}", name, box_content))
         }
 
         // Containers
@@ -109,11 +140,15 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
         Rule::graph_def => transpile_props_only(pair, "graph"),
         Rule::transform_def => transpile_props_only(pair, "transform"),
 
-        Rule::all_widgets => pair
-            .into_inner()
-            .map(transpile_pair)
-            .collect::<Vec<_>>()
-            .join("\n"),
+        Rule::all_widgets => {
+            let entries = pair
+                .into_inner()
+                .map(|p| transpile_pair(p))
+                .collect::<Result<Vec<_>, _>>()?;
+
+            Ok(entries.join("\n"))
+        }
+
 
         // Map entry
         Rule::map_entry => {
@@ -151,9 +186,9 @@ pub fn transpile_pair(pair: Pair<Rule>) -> String {
                 }
             }
 
-            format!("{}: {}", key, render_value(value_pair))
+            Ok(format!("{}: {}", key, render_value(value_pair)))
         }
 
-        _ => String::new(),
+        _ => Ok(String::new()),
     }
 }
