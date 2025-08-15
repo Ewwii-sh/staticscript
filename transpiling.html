@@ -181,7 +181,19 @@ statictranspl -t ./path/to/file.stpl ./path/to/file2.stpl
 </code></pre>
 <p>The transpile command outputs the transpiled <code>.rhai</code> files in the current directory which the command is ran. If you want to specify a specific directory which you want the <code>.rhai</code> files to appear, then you can add the <strong>--out</strong> flag (or <strong>-o</strong> flag in short).</p>
 <p><strong>Example:</strong></p>
-<pre><code class="language-bash">statictranspl -t ./path/to/file.stpl -o ./output_dir/
+<pre><code class="language-bash"># long form
+statictranspl -t ./path/to/file.stpl --out ./output_dir/
+
+# short form
+statictranspl -t ./path/to/file.stpl -o ./output_dir/
+</code></pre>
+<p>The transpiled code is unformatted by default and does not have whitespaces. Statictranspl provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted before writing by using the <strong>--format</strong> (or <strong>-f</strong>) flag.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash"># long form
+statictranspl -t ./path/to/file.stpl -o ./output_dir/ --format
+
+# short form
+statictranspl -t ./path/to/file.stpl -o ./output_dir/ -f
 </code></pre>
 
                     </main>
