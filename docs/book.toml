@@ -3,3 +3,8 @@ authors = ["Byson94"]
 language = "en"
 src = "src"
 title = "Statictranspl documentation"
+
+[output.html]
+default-theme = "navy"
+git-repository-url = "https://github.com/Ewwii-sh/statictranspl"
+additional-js = ["js/home_button.js"]
