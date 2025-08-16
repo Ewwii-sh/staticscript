@@ -54,8 +54,6 @@ fn main() {
 
             println!("Wrote {}", out_path.display());
         }
-    } else {
-        println!("No command provided!");
     }
 }
 

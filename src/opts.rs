@@ -3,6 +3,7 @@ use clap::Parser;
 /// Static transpiler that allows writing simple widgets for ewwii.
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
+#[command(arg_required_else_help = true)]
 pub struct AppArgs {
     /// Transpile files from stpl to rhai.
     #[clap(short, long)]
