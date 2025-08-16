@@ -18,7 +18,7 @@ statictranspl --help
 
 ```bash
 # install statictranspl
-cargo install https://github.com/Ewwii-sh/statictranspl/
+cargo install --git https://github.com/Ewwii-sh/statictranspl/
 
 # run statictranspl
 statictranspl --help
