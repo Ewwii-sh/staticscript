@@ -1,6 +1,6 @@
 # Examples
 
-Here is an example of a stpl bar that says "Hello World!":
+Here is an example of a stsc bar that says "Hello World!":
 
 ```ruby
 widget "widget1" {

@@ -1,48 +1,48 @@
-# statictranspl
+# StaticScript
 
-`statictranspl` is a static transpiler for the custom language named `stpl`. It efficiently transpiles `stpl` files to `rhai` files.
+`StaticScript` is a static transpiler for ewwii. It efficiently transpiles `sts` files to `rhai` files.
 
 Just as the name suggests, it is a static transpiler and does **not** support complex things like if/else, for/while, variable definition, et cetera yet. It is made only for beginners to create a simple configuration quickly and easily.
 
 ## Installation
 
-You can install statictranspl with ewwii's package manager, [eiipm](https://github.com/Ewwii-sh/eiipm).
+You can install StaticScript with ewwii's package manager, [eiipm](https://github.com/Ewwii-sh/eiipm).
 
 ```bash
-eiipm i statictranspl
+eiipm i staticscript
 ```
 
-This command will install the `stplc` binary which is the statictranspl compiler.
+This command will install the `stsc` binary which is the StaticScript Compiler.
 
 ## Usage
 
-You use the `stplc` (statictranspl compiler) binary to transpile `.stpl` files to `.rhai` files. You use the **--transpile** argument to transpile `.stpl` files.
+You use the `stsc` (staticscript compiler) binary to transpile `.sts` files to `.rhai` files. You use the **--transpile** argument to transpile `.sts` files.
 
 **Example use:**
 
 ```bash
 # long form
-stplc --transpile ./file1.stpl ./path/to/file2.stpl --out ./output_dir/
+stsc --transpile ./file1.sts ./path/to/file2.sts --out ./output_dir/
 
 # short form
-stplc -t ./file1.stpl ./path/to/file2.stpl -o ./output_dir/
+stsc -t ./file1.sts ./path/to/file2.sts -o ./output_dir/
 ```
 
-The transpiled code does not have whitespaces which may make it unredable. Statictranspl provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted by using the **--format** (or **-f**) flag.
+The transpiled code does not have whitespaces which may make it unredable. Staticscript provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted by using the **--format** (or **-f**) flag.
 
 **Example:**
 
 ```bash
 # long form
-stplc --transpile ./file.stpl--out ./output_dir/ --format
+stsc --transpile ./file.sts--out ./output_dir/ --format
 
 # short form
-stplc -t ./file.stpl -o ./output_dir/ -f
+stsc -t ./file.sts -o ./output_dir/ -f
 ```
 
 ## Example
 
-Here is a simple example of using stpl:
+Here is a simple example of using sts:
 
 ```ruby
 widget "widget1" {
