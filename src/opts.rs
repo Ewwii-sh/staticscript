@@ -1,6 +1,6 @@
 use clap::Parser;
 
-/// Static transpiler that allows writing simple widgets for ewwii.
+/// StaticScript: A fast transpiler that allows writing simple widgets for ewwii.
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 #[command(arg_required_else_help = true)]

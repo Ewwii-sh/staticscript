@@ -6,10 +6,10 @@ Once you have written your configuration in `stsc`, you can transpile it to `rha
 
 ```bash
 # long form
-statictranspl --transpile ./path/to/file.stsc
+stsc --transpile ./path/to/file.stsc
 
 # short form
-statictranspl -t ./path/to/file.stsc
+stsc -t ./path/to/file.stsc
 ```
 
 Other than providing just one `stsc` file, you can provide multiple `stsc` files as well! Just add them as well to the command.
@@ -18,7 +18,7 @@ Other than providing just one `stsc` file, you can provide multiple `stsc` files
 
 ```bash
 # NOTE: you can also use the long form of `-t` which is `--transpile`
-statictranspl -t ./path/to/file.stsc ./path/to/file2.stsc
+stsc -t ./path/to/file.stsc ./path/to/file2.stsc
 ```
 
 The transpile command outputs the transpiled `.rhai` files in the current directory which the command is ran. If you want to specify a specific directory which you want the `.rhai` files to appear, then you can add the **--out** flag (or **-o** flag in short).
@@ -27,20 +27,20 @@ The transpile command outputs the transpiled `.rhai` files in the current direct
 
 ```bash
 # long form
-statictranspl -t ./path/to/file.stsc --out ./output_dir/
+stsc -t ./path/to/file.stsc --out ./output_dir/
 
 # short form
-statictranspl -t ./path/to/file.stsc -o ./output_dir/
+stsc -t ./path/to/file.stsc -o ./output_dir/
 ```
 
-The transpiled code is unformatted by default and does not have whitespaces. Statictranspl provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted before writing by using the **--format** (or **-f**) flag.
+The transpiled code is unformatted by default and does not have whitespaces. StaticScript provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted before writing by using the **--format** (or **-f**) flag.
 
 **Example:**
 
 ```bash
 # long form
-statictranspl -t ./path/to/file.stsc -o ./output_dir/ --format
+stsc -t ./path/to/file.stsc -o ./output_dir/ --format
 
 # short form
-statictranspl -t ./path/to/file.stsc -o ./output_dir/ -f
+stsc -t ./path/to/file.stsc -o ./output_dir/ -f
 ```
