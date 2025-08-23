@@ -4,6 +4,16 @@
 
 Just as the name suggests, it is a static transpiler and does **not** support complex things like if/else, for/while, variable definition, et cetera yet. It is made only for beginners to create a simple configuration quickly and easily.
 
+## Installation
+
+You can install statictranspl with ewwii's package manager, [eiipm](https://github.com/Ewwii-sh/eiipm).
+
+```bash
+eiipm i statictranspl
+```
+
+This command will install the `stplc` binary which is the statictranspl compiler.
+
 ## Usage
 
 You use the `stplc` (statictranspl compiler) binary to transpile `.stpl` files to `.rhai` files. You use the **--transpile** argument to transpile `.stpl` files.
