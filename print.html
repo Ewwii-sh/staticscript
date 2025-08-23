@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Statictranspl documentation</title>
+        <title>StaticScript documentation</title>
         
         <meta name="robots" content="noindex" />
         
@@ -129,7 +129,7 @@
                         
                     </div>
 
-                    <h1 class="menu-title">Statictranspl documentation</h1>
+                    <h1 class="menu-title">StaticScript documentation</h1>
 
                     <div class="right-buttons">
                         
@@ -138,7 +138,7 @@
                         </a>
                         
                         
-                        <a href="https://github.com/Ewwii-sh/statictranspl" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/Ewwii-sh/staticscript" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
                         
@@ -233,31 +233,31 @@ window &quot;main_window&quot; {
 <p>Once you have written your configuration in <code>stsc</code>, you can transpile it to <code>rhai</code> with the <strong>--transpile</strong> flag.</p>
 <p><strong>Usage example:</strong></p>
 <pre><code class="language-bash"># long form
-statictranspl --transpile ./path/to/file.stsc
+stsc --transpile ./path/to/file.stsc
 
 # short form
-statictranspl -t ./path/to/file.stsc
+stsc -t ./path/to/file.stsc
 </code></pre>
 <p>Other than providing just one <code>stsc</code> file, you can provide multiple <code>stsc</code> files as well! Just add them as well to the command.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-bash"># NOTE: you can also use the long form of `-t` which is `--transpile`
-statictranspl -t ./path/to/file.stsc ./path/to/file2.stsc
+stsc -t ./path/to/file.stsc ./path/to/file2.stsc
 </code></pre>
 <p>The transpile command outputs the transpiled <code>.rhai</code> files in the current directory which the command is ran. If you want to specify a specific directory which you want the <code>.rhai</code> files to appear, then you can add the <strong>--out</strong> flag (or <strong>-o</strong> flag in short).</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-bash"># long form
-statictranspl -t ./path/to/file.stsc --out ./output_dir/
+stsc -t ./path/to/file.stsc --out ./output_dir/
 
 # short form
-statictranspl -t ./path/to/file.stsc -o ./output_dir/
+stsc -t ./path/to/file.stsc -o ./output_dir/
 </code></pre>
-<p>The transpiled code is unformatted by default and does not have whitespaces. Statictranspl provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted before writing by using the <strong>--format</strong> (or <strong>-f</strong>) flag.</p>
+<p>The transpiled code is unformatted by default and does not have whitespaces. StaticScript provides a simple experimental formatter that follows the KISS (Keep It Simple Stupid) principle. You can make the transpiled code be formatted before writing by using the <strong>--format</strong> (or <strong>-f</strong>) flag.</p>
 <p><strong>Example:</strong></p>
 <pre><code class="language-bash"># long form
-statictranspl -t ./path/to/file.stsc -o ./output_dir/ --format
+stsc -t ./path/to/file.stsc -o ./output_dir/ --format
 
 # short form
-statictranspl -t ./path/to/file.stsc -o ./output_dir/ -f
+stsc -t ./path/to/file.stsc -o ./output_dir/ -f
 </code></pre>
 
                     </main>
