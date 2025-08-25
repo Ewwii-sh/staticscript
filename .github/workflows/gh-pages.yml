@@ -5,9 +5,6 @@ on:
       - main
     paths:
       - "docs/**"
-      - "gen-docs.ts"
-      - "crates/eww/src/widgets/widget_definitions.rs"
-      - "crates/eww/src/config/inbuilt.rs"
       - ".github/workflows/**"
 
 permissions:
@@ -25,7 +22,7 @@ jobs:
       - name: build mdBook page
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: "0.4.8"
+          mdbook-version: "0.4.52"
       - run: mdbook build docs
 
       - name: Deploy
