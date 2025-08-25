@@ -5,6 +5,8 @@ src = "src"
 title = "StaticScript documentation"
 
 [output.html]
-default-theme = "navy"
+default-theme = "latte"
+preferred-dark-theme = "macchiato"
 git-repository-url = "https://github.com/Ewwii-sh/staticscript"
 additional-js = ["js/home_button.js"]
+additional-css = ["./theme/catppuccin.css"]
