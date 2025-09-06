@@ -75,70 +75,70 @@
   color: #c1c3c8;
 }
 .ewwii a code {
-  color: #b3c7ff;
+  color: #ff914c;
 }
 .ewwii code {
   color: #c1c3c8;
-  background: #23262f;
+  background: #181819;
 }
 .ewwii pre {
   border-top: 2px solid #7c7f93;
   padding-top: 0.2em;
 }
 .ewwii blockquote blockquote {
-  border-top: 0.1em solid #23262f;
-  border-bottom: 0.1em solid #23262f;
+  border-top: 0.1em solid #1c1d1e;
+  border-bottom: 0.1em solid #1c1d1e;
 }
 .ewwii hr {
-  border-color: #23262f;
+  border-color: #1c1d1e;
   border-style: solid;
 }
 .ewwii del {
   color: #7c7f93;
 }
 .ewwii .tooltiptext {
-  background: #23262f;
+  background: #1c1d1e;
   color: #c1c3c8;
 }
 
 .ewwii .ace_gutter {
   color: #7c7f93;
-  background: #23262f;
+  background: #1c1d1e;
 }
 
 .ewwii .ace_gutter-active-line.ace_gutter-cell {
   color: #ea76cb;
-  background: #23262f;
+  background: #1c1d1e;
 }
 
 .ewwii {
-  --bg: #17181c; /* book background */
+  --bg: #212223; /* book background */
   --fg: #c1c3c8; /* default text color */
-  --sidebar-bg: #23262f;
+  --sidebar-bg: #1c1d1e;
   --sidebar-fg: #c1c3c8;
   --sidebar-non-existant: #7c7f93;
-  --sidebar-active: #b3c7ff;
+  --sidebar-active: #ff914c;
   --sidebar-spacer: #7c7f93;
   --scrollbar: #7c7f93;
   --icons: #7c7f93;
   --icons-hover: #c1c3c8;
-  --links: #b3c7ff;
+  --links: #ff914c;
   --inline-code-color: #c1c3c8;
-  --theme-popup-bg: #23262f;
+  --theme-popup-bg: #1c1d1e;
   --theme-popup-border: #7c7f93;
   --theme-hover: #2c2f3b;
-  --quote-bg: #23262f;
+  --quote-bg: #1c1d1e;
   --quote-border: #2c2f3b;
   --table-border-color: #2c2f3b;
-  --table-header-bg: #23262f;
+  --table-header-bg: #1c1d1e;
   --table-alternate-bg: #1c1d21;
   --searchbar-border-color: #2c2f3b;
-  --searchbar-bg: #23262f;
+  --searchbar-bg: #1c1d1e;
   --searchbar-fg: #c1c3c8;
   --searchbar-shadow-color: #1c1d21;
   --searchresults-header-fg: #c1c3c8;
   --searchresults-border-color: #2c2f3b;
-  --searchresults-li-bg: #17181c;
+  --searchresults-li-bg: #212223;
   --search-mark-bg: #fe640b;
   --warning-border: #fe640b;
   --color-scheme: dark;
