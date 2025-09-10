@@ -1,3 +1,8 @@
+> [!WARNING]
+> This project has been deprecated!
+>
+> - See [XmlMan](https://github.com/Ewwii-sh/xmlman) which is a better alternative.
+
 # StaticScript
 
 `StaticScript` is a static transpiler for ewwii. It efficiently transpiles `sts` files to `rhai` files.
